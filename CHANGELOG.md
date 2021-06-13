@@ -11,6 +11,9 @@
     - Added User DTO
     - Added DTO to Entity mapper
     - Changed the root context path to /user-api
+    - Excluded stack trace errors in response
+    - Added interface for controller to segregate business logic and configurations
+    - Added generic response for user api
 
 ## 09-JUNE-2021
 

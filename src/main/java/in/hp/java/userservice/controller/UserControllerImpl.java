@@ -1,51 +1,50 @@
 package in.hp.java.userservice.controller;
 
+import in.hp.java.userservice.controller.contract.UserController;
+import in.hp.java.userservice.dto.UserApiResponse;
 import in.hp.java.userservice.dto.UserDto;
 import in.hp.java.userservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
 @Slf4j
-public class UserController {
+public class UserControllerImpl implements UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseEntity<Object> addUser(@RequestBody UserDto user) {
+    @Override
+    public ResponseEntity<Object> addUser(UserDto user) {
         log.info("Add User: {}", user);
         userService.addUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserDto>> getUsers() {
+    @Override
+    public ResponseEntity<UserApiResponse<Object>> getUsers() {
         log.info("Get Users");
-        return ResponseEntity.ok(userService.getUsers());
+        return generateResponse(userService.getUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getUser(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<UserApiResponse<Object>> getUser(Long id) {
         log.info("Get User: {}", id);
-        return ResponseEntity.ok(userService.getUser(id));
+        return generateResponse(userService.getUser(id), HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Object> updateUser(@RequestBody UserDto user) {
-        log.info("Update User: {}",user);
+    @Override
+    public ResponseEntity<Object> updateUser(UserDto user) {
+        log.info("Update User: {}", user);
         userService.updateUser(user);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<Object> deleteUser(Long id) {
         log.info("Delete User: {}", id);
         userService.deleteUser(id);
         return ResponseEntity.status(HttpStatus.GONE).build();
