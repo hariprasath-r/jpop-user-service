@@ -20,8 +20,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserMapper userMapper;
+
     public void addUser(UserDto userDto) {
-        var user = UserMapper.mapToEntity(userDto);
+        var user = userMapper.toEntity(userDto);
         log.info("Mapped to entity: {}", user);
         userRepository.save(user);
     }
@@ -29,11 +32,11 @@ public class UserService {
     public List<UserDto> getUsers() {
         List<User> userList = userRepository.findAll();
         log.info("Users from repo: {}", userList);
-        return userList.stream().map(UserMapper::mapToDto).collect(Collectors.toList());
+        return userList.stream().map(userMapper::toDto).collect(Collectors.toList());
     }
 
     public UserDto getUser(Long id) {
-        return UserMapper.mapToDto(findUser(id));
+        return userMapper.toDto(findUser(id));
     }
 
     private User findUser(Long id) {
@@ -50,7 +53,7 @@ public class UserService {
 
     public void updateUser(UserDto user) {
         findUser(user.getId());
-        userRepository.save(UserMapper.mapToEntity(user));
+        userRepository.save(userMapper.toEntity(user));
         log.info("User {}, updated successfully.", user.getId());
     }
 

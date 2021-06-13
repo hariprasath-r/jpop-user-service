@@ -2,25 +2,12 @@ package in.hp.java.userservice.mapper;
 
 import in.hp.java.userservice.dto.UserDto;
 import in.hp.java.userservice.entity.User;
+import org.mapstruct.Mapper;
 
-public class UserMapper {
+@Mapper(componentModel = "spring")
+public interface UserMapper {
 
-    private UserMapper() {
-    }
+    User toEntity(UserDto userDto);
 
-    public static UserDto mapToDto(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .name(user.getName())
-                .email(user.getEmail())
-                .build();
-    }
-
-    public static User mapToEntity(UserDto userDto) {
-        return User.builder()
-                .id(userDto.getId())
-                .name(userDto.getName())
-                .email(userDto.getEmail())
-                .build();
-    }
+    UserDto toDto(User user);
 }
