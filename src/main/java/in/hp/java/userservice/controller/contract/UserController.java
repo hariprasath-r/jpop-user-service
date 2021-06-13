@@ -25,7 +25,7 @@ public interface UserController {
     ResponseEntity<Object> deleteUser(@PathVariable Long id);
 
     default <T> ResponseEntity<UserApiResponse<Object>> generateResponse(T response, HttpStatus httpStatus) {
-        UserApiResponse<Object> userApiResponse = UserApiResponse.builder()
+        var userApiResponse = UserApiResponse.builder()
                 .response(response)
                 .build();
 

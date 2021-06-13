@@ -33,8 +33,7 @@ public class UserService {
     }
 
     public UserDto getUser(Long id) {
-        var user = findUser(id);
-        return UserMapper.mapToDto(user);
+        return UserMapper.mapToDto(findUser(id));
     }
 
     private User findUser(Long id) {
