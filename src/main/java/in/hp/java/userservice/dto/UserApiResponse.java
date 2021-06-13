@@ -1,5 +1,6 @@
 package in.hp.java.userservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class UserApiResponse<T> {
     T response;
 
     @Builder.Default
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     LocalDateTime timestamp = LocalDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("IST")));
 
 }

@@ -2,6 +2,7 @@ package in.hp.java.userservice.service;
 
 import in.hp.java.userservice.dto.UserDto;
 import in.hp.java.userservice.entity.User;
+import in.hp.java.userservice.exception.UserNotFoundException;
 import in.hp.java.userservice.mapper.UserMapper;
 import in.hp.java.userservice.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -42,8 +43,9 @@ public class UserService {
             log.info("User found: {}", id);
             return user.get();
         } else {
-            log.info("User not found: {}", id);
-            throw new RuntimeException();
+            var errorMessage = "User not found: " + id;
+            log.info(errorMessage);
+            throw new UserNotFoundException(errorMessage);
         }
     }
 
