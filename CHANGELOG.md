@@ -14,6 +14,7 @@
     - Excluded stack trace errors in response
     - Added interface for controller to segregate business logic and configurations
     - Added generic response for user api
+    - Added exception handlers
 
 ## 09-JUNE-2021
 
