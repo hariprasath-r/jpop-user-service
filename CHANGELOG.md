@@ -3,6 +3,7 @@
 ## 19-JUNE-2021
 
 ### Documentation
+
     - Added Swagger 3 - Open API 3.0
     - Configured swagger properties
 
