@@ -13,3 +13,17 @@ management:
   endpoints:
     enabled-by-default: true
     web.exposue: health
+
+#swagger ui configs
+#configure the path for swagger ui html. Default is /swagger-ui.html
+#configured to default context path
+springdoc:
+  show-actuator: true
+  packagesToScan: in.hp.java.userservice
+  pathsToMatch: /users/**
+  swagger-ui:
+    enabled: true
+    path: /
+  api-docs:
+    enabled: true
+    path: /docs
