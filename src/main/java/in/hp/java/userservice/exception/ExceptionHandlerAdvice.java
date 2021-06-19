@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -24,6 +25,7 @@ public class ExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({UserNotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public final ResponseEntity<UserApiResponse<Object>> handleUserNotFoundException(
             UserNotFoundException ex,
             WebRequest request
@@ -36,6 +38,7 @@ public class ExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final ResponseEntity<UserApiResponse<Object>> handleException(Exception ex) {
         log.error("Exception Occurred: {}", ex.getMessage());
         var userApiResponse = generateUserApiResponse(
