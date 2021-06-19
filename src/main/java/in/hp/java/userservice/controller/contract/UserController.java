@@ -31,7 +31,7 @@ public interface UserController {
 
     @Operation(summary = "Gets a User")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User Created"),
+            @ApiResponse(responseCode = "200", description = "User Found"),
             @ApiResponse(responseCode = "404", description = "User Not Found"),
             @ApiResponse(responseCode = "500", description = "Processing Error")
     })
@@ -49,7 +49,6 @@ public interface UserController {
 
     @Operation(summary = "Deletes a User")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "User Created"),
             @ApiResponse(responseCode = "410", description = "User Deleted"),
             @ApiResponse(responseCode = "500", description = "Processing Error")
     })
