@@ -14,7 +14,7 @@ management:
     enabled-by-default: true
     web.exposue: health
 
-#swagger ui configs
+#swagger configs
 #configure the path for swagger ui html. Default is /swagger-ui.html
 #configured to default context path
 springdoc:
@@ -27,3 +27,12 @@ springdoc:
   api-docs:
     enabled: true
     path: /docs
+
+#swagger ui properties
+swagger-custom:
+  name: User API
+  version: '@project.version@' #this will be coming from pom
+  description: '@project.description@'
+  contact:
+    name: Hariprasath
+    url: https://github.com/hariprasath-r
