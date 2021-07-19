@@ -53,7 +53,7 @@ public interface UserController {
 
     @Operation(summary = "Deletes a User")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "410", description = "User Deleted"),
+            @ApiResponse(responseCode = "202", description = "User Deleted"),
             @ApiResponse(responseCode = "500", description = "Processing Error")
     })
     @DeleteMapping("/{id}")

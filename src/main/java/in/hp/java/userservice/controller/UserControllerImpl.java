@@ -51,7 +51,7 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<Object> deleteUser(Long id) {
         log.info("Delete User: {}", id);
         userService.deleteUser(id);
-        return ResponseEntity.status(HttpStatus.GONE).build();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
 }

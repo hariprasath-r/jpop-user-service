@@ -1,5 +1,18 @@
 # jpop-user-service
 
+## 19-JULY-2021
+
+### Implementation
+
+    - Updated the return type from Object to specific type
+    - Changed from HttpStatus.GONE to ACCEPTED
+    - Updated the sequence generation strategy for primary key column
+    - Fixes and improvements
+
+### Configuration
+
+    - Updated the hibernate.ddl-auto property to update
+
 ## 22-JUNE-2021
 
 ### Configuration
