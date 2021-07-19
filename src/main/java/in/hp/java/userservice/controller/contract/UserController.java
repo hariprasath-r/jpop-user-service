@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "User Controller", description = "User data manipulation")
 @RequestMapping("/users")
 public interface UserController {
@@ -29,7 +31,7 @@ public interface UserController {
             @ApiResponse(responseCode = "500", description = "Processing Error")
     })
     @GetMapping
-    ResponseEntity<UserApiResponse<Object>> getUsers();
+    ResponseEntity<UserApiResponse<List<UserDto>>> getUsers();
 
     @Operation(summary = "Gets a User")
     @ApiResponses(value = {
@@ -38,7 +40,7 @@ public interface UserController {
             @ApiResponse(responseCode = "500", description = "Processing Error")
     })
     @GetMapping("/{id}")
-    ResponseEntity<UserApiResponse<Object>> getUser(@PathVariable Long id);
+    ResponseEntity<UserApiResponse<UserDto>> getUser(@PathVariable Long id);
 
     @Operation(summary = "Updates a User")
     @ApiResponses(value = {
@@ -57,8 +59,8 @@ public interface UserController {
     @DeleteMapping("/{id}")
     ResponseEntity<Object> deleteUser(@PathVariable Long id);
 
-    default <T> ResponseEntity<UserApiResponse<Object>> generateResponse(T response, HttpStatus httpStatus) {
-        var userApiResponse = UserApiResponse.builder()
+    default <T> ResponseEntity<UserApiResponse<T>> generateResponse(T response, HttpStatus httpStatus) {
+        UserApiResponse<T> userApiResponse = UserApiResponse.<T>builder()
                 .response(response)
                 .build();
 

@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Tag(name = "User Controller")
 @RestController
 @Slf4j
@@ -27,13 +29,13 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<UserApiResponse<Object>> getUsers() {
+    public ResponseEntity<UserApiResponse<List<UserDto>>> getUsers() {
         log.info("Get Users");
         return generateResponse(userService.getUsers(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<UserApiResponse<Object>> getUser(Long id) {
+    public ResponseEntity<UserApiResponse<UserDto>> getUser(Long id) {
         log.info("Get User: {}", id);
         return generateResponse(userService.getUser(id), HttpStatus.OK);
     }

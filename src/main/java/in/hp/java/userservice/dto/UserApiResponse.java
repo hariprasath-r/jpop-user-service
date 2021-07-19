@@ -22,7 +22,7 @@ public class UserApiResponse<T> {
 
     @Schema(name = "Timestamp")
     @Builder.Default
-    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     LocalDateTime timestamp = LocalDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("IST")));
 
 }
