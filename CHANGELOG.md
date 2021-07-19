@@ -12,6 +12,7 @@
 ### Configuration
 
     - Updated the hibernate.ddl-auto property to update
+    - Configured sleuth and zipkin
 
 ## 22-JUNE-2021
 
